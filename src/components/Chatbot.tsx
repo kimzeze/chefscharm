@@ -49,18 +49,18 @@ export default function Chatbot() {
   };
 
   return (
-    <div className="stretch mx-auto flex w-full max-w-md flex-col border py-24 text-primary">
+    <div className="stretch mx-auto flex w-full max-w-md flex-col border py-24">
       {messages.map((m, index) => (
-        <div key={index} className="whitespace-pre-wrap">
+        <div key={index} className="whitespace-pre-wrap text-white">
           {m.role === 'user' ? '너: ' : '안성재: '}
           {m.content}
         </div>
       ))}
       <form onSubmit={handleSubmit}>
         <input
-          className="fixed bottom-0 mb-8 w-full max-w-md rounded border border-gray-300 p-2 shadow-xl"
+          className="fixed bottom-0 mb-8 w-full max-w-md rounded border border-gray-300 p-2 text-primary shadow-xl"
           value={input}
-          placeholder="Say something..."
+          placeholder="평가받을 음식을 입력해주세요."
           onChange={handleInputChange}
           disabled={isLoading}
         />
