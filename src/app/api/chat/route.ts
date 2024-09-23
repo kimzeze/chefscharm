@@ -35,7 +35,7 @@ AI: 된장찌개의 코어는 바로 된장의 발효된 깊은 맛이란 말이
     const response = await openai.chat.completions.create({
       model: 'gpt-3.5-turbo',
       messages: formattedMessages,
-      max_tokens: 250, // 답변 길이 제한 (약 250-300자)
+      // max_tokens: 250, // 답변 길이 제한 (약 250-300자)
       temperature: 0.7, // 창의성과 일관성의 균형
     });
 
