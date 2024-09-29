@@ -1,12 +1,12 @@
-import Chatbot from '@/components/Chatbot';
+import FoodEvaluator from '@/components/FoodEvaluator';
 import Title from '@/components/Title';
 
 export default function Home() {
   return (
-    <div className="flex-grow bg-primary">
+    <div className="flex-grow">
       <main className="">
         <Title />
-        <Chatbot />
+        <FoodEvaluator />
       </main>
       <footer className=""></footer>
     </div>
