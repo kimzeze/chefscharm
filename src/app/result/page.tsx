@@ -36,14 +36,21 @@ export default function ResultPage() {
   };
 
   if (!result) {
-    return <div>결과를 불러오는 중...</div>;
+    return (
+      <div>
+        <p className="text-center font-bold text-white">서버 오류, 다시 평가해주세요!</p>
+        <Button
+          label="다시 평가하러가기"
+          type="button"
+          onClick={handleClose}
+          className="mt-4 w-48 border-white bg-secondary font-bold text-primary"
+        />
+      </div>
+    );
   }
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black">
-      <button onClick={handleClose} className="absolute right-4 top-4" aria-label="결과 창 닫기">
-        <Image src="/assets/close-button.svg" alt="닫기" width={30} height={30} />
-      </button>
       <div className="flex w-full max-w-[480px] flex-col items-center px-4">
         <div className="w-full text-center">
           {/* 심사위원 이미지 */}

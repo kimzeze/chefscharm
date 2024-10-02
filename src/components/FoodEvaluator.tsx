@@ -46,7 +46,7 @@ export default function FoodEvaluator() {
         onChange={(e) => setFood(e.target.value.slice(0, 10))}
         onKeyDown={handleKeyDown}
         placeholder="평가받을 음식을 입력해주세요 (10자 이내)"
-        className="w-full rounded-full border-2 border-gray-300 bg-primary px-10 py-2 text-center font-bold text-white"
+        className="w-full rounded-full border-2 border-gray-300 bg-primary px-10 py-2 text-center text-14 font-bold text-white"
         maxLength={10}
       />
       <Button
