@@ -46,7 +46,8 @@ export default function ResultPage() {
       </button>
       <div className="flex w-full max-w-[480px] flex-col items-center px-4">
         <div className="w-full text-center">
-          <div className="relative w-full" style={{ aspectRatio: '600/400' }}>
+          {/* 심사위원 이미지 */}
+          <div className="rounded-1 relative w-full border-2 border-primary" style={{ aspectRatio: '600/400' }}>
             <Image
               src={selectedJudge === 'anSungJae' ? '/assets/ahn.png' : '/assets/baek.png'}
               alt={`${selectedJudge === 'anSungJae' ? '안성재' : '백종원'} 이미지`}
@@ -65,7 +66,7 @@ export default function ResultPage() {
           label="다시 평가하기"
           type="button"
           onClick={handleClose}
-          className="mt-4 border-white bg-tertiary font-bold text-primary"
+          className="mt-4 border-white bg-primary font-bold text-tertiary"
         />
       </div>
     </div>
