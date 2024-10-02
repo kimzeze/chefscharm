@@ -1,49 +1,39 @@
+// FoodEvaluator.tsx
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 import Button from '@/components/Button';
 import { JudgeSelector } from './JudgeSelector';
-import useModal from '@/lib/hooks/useModal';
-import ResultModal from './ResultModal';
 import { useFoodEvaluator } from '@/lib/hooks/useFoodEvaluator';
 import { LoadingSpinner } from './LoadingSpinner';
 
 export default function FoodEvaluator() {
-  const { food, setFood, result, isLoading, error, selectedJudge, handleJudgeSelect, handleEvaluate, handleRefresh } =
+  const router = useRouter();
+  const { food, setFood, result, isLoading, error, selectedJudge, handleJudgeSelect, handleEvaluate } =
     useFoodEvaluator();
 
-  const { openModal, closeModal, ModalPortal } = useModal();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
   useEffect(() => {
-    if (result && !isLoading && !error) {
-      openModal();
+    if (result) {
+      // 결과를 로컬 스토리지에 저장
+      localStorage.setItem('evaluationResult', JSON.stringify(result));
+      localStorage.setItem('selectedJudge', selectedJudge);
+      // 결과 페이지로 이동
+      router.push('/result');
     }
-  }, [result, isLoading, error, openModal]);
+  }, [result, selectedJudge, router]);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = e.target.value.slice(0, 10);
-    setFood(newValue);
-  };
-
-  const handleEvaluateAndOpenModal = async () => {
-    if (food.trim().length === 0 || isSubmitting) {
+  const handleEvaluateAndNavigate = () => {
+    if (food.trim().length === 0 || isLoading) {
       return;
     }
-    setIsSubmitting(true);
-    await handleEvaluate();
-    setIsSubmitting(false);
-  };
-
-  const handleCloseAndRefresh = () => {
-    closeModal();
-    handleRefresh();
+    handleEvaluate();
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       e.preventDefault();
-      handleEvaluateAndOpenModal();
+      handleEvaluateAndNavigate();
     }
   };
 
@@ -53,7 +43,7 @@ export default function FoodEvaluator() {
       <input
         type="text"
         value={food}
-        onChange={handleInputChange}
+        onChange={(e) => setFood(e.target.value.slice(0, 10))}
         onKeyDown={handleKeyDown}
         placeholder="평가받을 음식을 입력해주세요 (10자 이내)"
         className="w-full rounded-full border-2 border-gray-300 bg-primary px-10 py-2 text-center font-bold text-white"
@@ -62,20 +52,12 @@ export default function FoodEvaluator() {
       <Button
         label="평가하기"
         type="button"
-        onClick={handleEvaluateAndOpenModal}
-        disabled={isLoading || isSubmitting || food.trim().length === 0}
+        onClick={handleEvaluateAndNavigate}
+        disabled={isLoading || food.trim().length === 0}
         className="border-white bg-tertiary font-bold text-primary disabled:opacity-50"
       />
       {error && <div className="rounded bg-red-100 p-2 text-center text-red-500">오류: {error}</div>}
       {isLoading && <LoadingSpinner selectedJudge={selectedJudge} />}
-      <ModalPortal>
-        <ResultModal
-          closeModal={handleCloseAndRefresh}
-          result={result}
-          isLoading={isLoading}
-          selectedJudge={selectedJudge}
-        />
-      </ModalPortal>
     </div>
   );
 }
