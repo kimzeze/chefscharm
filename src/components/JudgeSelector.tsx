@@ -13,10 +13,10 @@ interface JudgeSelectorProps {
 export function JudgeSelector({ selectedJudge, onJudgeSelect }: JudgeSelectorProps) {
   return (
     <div className="flex flex-col items-center">
-      <h3 className="mb-4 flex w-10/12 items-center justify-center rounded-full border-2 border-tertiary bg-primary p-2 text-center text-20 font-semibold text-white">
+      <h3 className="mb-4 flex w-full items-center justify-center rounded-full border-2 border-primary bg-black p-2 text-center text-20 font-semibold text-white">
         👨🏻‍🍳 원하시는 쉐프를 선택해주세요.
       </h3>
-      <div className="relative mb-4 w-full" style={{ aspectRatio: '600/750' }}>
+      <div className="relative mb-4 h-[400px]" style={{ aspectRatio: '600/750' }}>
         <Image
           src={selectedJudge === 'anSungJae' ? '/assets/ahn_selected.png' : '/assets/baek_selected.png'}
           alt={`${selectedJudge === 'anSungJae' ? '안성재' : '백종원'} 이미지`}
