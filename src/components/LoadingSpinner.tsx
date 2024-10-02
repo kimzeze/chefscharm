@@ -12,9 +12,11 @@ export const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({ selectedJudge })
           <Image
             src={selectedJudge === 'anSungJae' ? '/assets/ahn.png' : '/assets/baek.png'}
             alt={`${selectedJudge === 'anSungJae' ? '안성재' : '백종원'} 이미지`}
-            layout="fill"
-            objectFit="contain"
-            className="animate-pulse"
+            fill
+            sizes="(max-width: 480px) 100vw, 480px"
+            style={{ objectFit: 'contain' }}
+            priority
+            className="animate-pulse rounded-lg"
           />
         </div>
         <p className="text-xl font-bold text-white">평가중...</p>
