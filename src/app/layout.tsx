@@ -13,7 +13,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className="flex min-h-screen flex-col text-base antialiased">{children}</body>
+      <body className="flex min-h-screen flex-col bg-black text-base antialiased">
+        <div className="mx-auto w-full max-w-[480px]">
+          <main className="flex-grow">
+            <h1 className="sr-only">흑백요리사 리뷰 작성기</h1>
+            {children}
+          </main>
+          <div id="portal"></div>
+        </div>
+      </body>
     </html>
   );
 }
