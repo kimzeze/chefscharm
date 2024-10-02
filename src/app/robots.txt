@@ -1,0 +1,3 @@
+User-Agent: *
+Allow: /
+Sitemap: https://chefscharm.vercel.app/sitemap.xml // 사이트맵 경로
