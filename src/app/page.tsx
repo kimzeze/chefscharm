@@ -8,7 +8,6 @@ export default function Home() {
         <Title />
         <FoodEvaluator />
       </main>
-      <footer className=""></footer>
     </div>
   );
 }
