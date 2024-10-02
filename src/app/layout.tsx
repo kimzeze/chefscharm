@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   description: '요리에 대한 심사를 안성재, 백종원 쉐프의 말투로 변환하여 평가합니다.',
   verification: {
     google: 'Lv6mEVE9dzaGiao-qDkBRxkRSI35vz8-Iv9gvRjG_oQ',
+    other: {
+      'naver-site-verification': 'fe8a592fa4f54930663c07077a11ae8ff6c4bdfa',
+    },
   },
 };
 
