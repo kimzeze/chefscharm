@@ -7,6 +7,7 @@ import { EvaluationResult } from '@/components/EvaluationResult';
 import Image from 'next/image';
 import Button from '@/components/Button';
 import { toast, Toaster } from 'react-hot-toast';
+import Title from '@/components/Title';
 
 export default function ResultPage() {
   const router = useRouter();
@@ -36,7 +37,7 @@ export default function ResultPage() {
 
   const handleCopy = () => {
     if (result) {
-      const textToCopy = `${result.food} 심사 결과:\n${result.evaluation}`;
+      const textToCopy = `${result.evaluation}`;
       navigator.clipboard
         .writeText(textToCopy)
         .then(() => {
@@ -63,9 +64,10 @@ export default function ResultPage() {
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black">
+    <div className="my-5 flex items-center justify-center bg-black">
       <Toaster position="top-center" />
       <div className="flex w-full max-w-[480px] flex-col items-center px-4">
+        <Title />
         <div className="w-full text-center">
           <div className="rounded-1 relative w-full border-2 border-primary" style={{ aspectRatio: '600/400' }}>
             <Image
@@ -86,13 +88,13 @@ export default function ResultPage() {
           label="결과 복사하기"
           type="button"
           onClick={handleCopy}
-          className="mt-2 border-white bg-tertiary font-bold text-primary"
+          className="mt-5 border-white bg-tertiary font-bold text-primary"
         />
         <Button
-          label="다시 평가하기"
+          label="다시 심사받기"
           type="button"
           onClick={handleClose}
-          className="mb-5 mt-2 border-white bg-primary font-bold text-tertiary"
+          className="mt-5 border-white bg-primary font-bold text-tertiary"
         />
       </div>
     </div>
